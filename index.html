@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Les Cinq Rois - Compteur de points</title>
   <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <style>
     :root{
       --bg:#0b1220;
@@ -432,21 +433,30 @@
 
     // ── Classement ────────────────────────────────────────────────────────────
     function updateLeaderboard() {
-      const sorted = [...players].sort((a, b) =>
-        leaderboardSortAlpha ? a.name.localeCompare(b.name,'fr',{sensitivity:'base'}) : a.score - b.score
-      );
+      // Rang par score (du plus petit au plus grand) — toujours calculé
+      const byScore = [...players].sort((a, b) => a.score - b.score);
+      const rankMap = new Map(); // player → rang par score
+      byScore.forEach((p, i) => rankMap.set(p, i));
+
+      // Liste affichée : par score ou alphabétique selon le mode
+      const displayed = leaderboardSortAlpha
+        ? [...players].sort((a, b) => a.name.localeCompare(b.name,'fr',{sensitivity:'base'}))
+        : byScore;
+
       document.getElementById('leaderboardTitle').textContent =
         leaderboardSortAlpha ? '🔤 Classement actuel' : '🏆 Classement actuel';
       leaderboardList.innerHTML = '';
       const maxScore = Math.max(...players.map(p => p.score), 1);
-      sorted.forEach((player, index) => {
+      displayed.forEach(player => {
+        const rank = rankMap.get(player);
+        const isLeader = rank === 0;
         const item = document.createElement('div');
-        item.className = 'leaderboard-item' + (!leaderboardSortAlpha && index === 0 ? ' leader' : '');
+        item.className = 'leaderboard-item' + (isLeader ? ' leader' : '');
         const pct = Math.min((player.score / maxScore) * 100, 100);
         const color = PLAYER_COLORS[players.indexOf(player) % PLAYER_COLORS.length];
         item.innerHTML = `
           <div class="leaderboard-progress" style="width:${pct}%"></div>
-          <span class="leaderboard-rank">${!leaderboardSortAlpha && index === 0 ? '★' : (index+1)+'.'}</span>
+          <span class="leaderboard-rank">${isLeader ? '★' : (rank+1)+'.'}</span>
           <span class="leaderboard-name" style="color:${color}">${player.name}</span>
           <span class="leaderboard-score">${player.score}</span>
         `;
@@ -454,6 +464,16 @@
       });
     }
 
+    function setInputsLocked(locked) {
+      players.forEach((_, i) => {
+        const input = document.getElementById(`round-${i}`);
+        const btnAdd = document.querySelector(`button[onclick="addRoundPoints(${i})"]`);
+        const btnSub = document.querySelector(`button[onclick="subtractRoundPoints(${i})"]`);
+        if (input) { input.disabled = locked; input.style.opacity = locked ? '.35' : ''; }
+        if (btnAdd) { btnAdd.disabled = locked; btnAdd.style.opacity = locked ? '.35' : ''; }
+        if (btnSub) { btnSub.disabled = locked; btnSub.style.opacity = locked ? '.35' : ''; }
+      });
+    }
     function updateScores() {
       players.forEach((p, i) => { const el = document.getElementById(`score-${i}`); if (el) el.textContent = p.score; });
     }
@@ -477,6 +497,7 @@
         ? `Partie terminée ! 🏆 Vainqueur : ${winners[0].name} avec ${minScore} points.`
         : `Partie terminée ! Égalité : ${winners.map(w=>w.name).join(', ')} avec ${minScore} points.`;
       gameStatus.textContent = 'Les 11 manches sont terminées.';
+      setInputsLocked(true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -529,7 +550,7 @@
       if (!lastRoundScores.length) return;
       players.forEach((p, i) => { p.score = lastRoundScores[i]; });
       lastRoundScores = []; roundPending = [];
-      if (gameOver) { gameOver = false; startChrono(); winnerPanel.classList.add('hidden'); }
+      if (gameOver) { gameOver = false; startChrono(); winnerPanel.classList.add('hidden'); setInputsLocked(false); }
       if (round > 1) round--;
       updateMancheInfo();
       nextRoundBtnBottom.classList.remove('hidden');
