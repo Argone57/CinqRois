@@ -22,786 +22,709 @@
     }
     *{box-sizing:border-box}
     html,body{
-      margin:0;min-height:100%;
-      background:linear-gradient(180deg,#07101c 0%,#0f172a 45%,#111827 100%);
+      margin:0;
+      min-height:100%;
+      background:linear-gradient(180deg,#07101c 0%, #0f172a 45%, #111827 100%);
       color:var(--text);
       font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
       overflow-x:hidden;
     }
     body{min-height:100dvh}
     .app{
-      width:min(1200px,100%);margin:0 auto;
+      width:min(1200px,100%);
+      margin:0 auto;
       padding:clamp(8px,1.5vw,16px);
-      display:flex;flex-direction:column;gap:clamp(8px,1.2vw,14px);
+      display:flex;
+      flex-direction:column;
+      gap:clamp(8px,1.2vw,14px);
     }
     .section{
-      background:rgba(17,24,39,.95);border:1px solid rgba(51,65,85,.9);
-      border-radius:var(--radius);padding:clamp(10px,1.4vw,16px);
+      background:rgba(17,24,39,.95);
+      border:1px solid rgba(51,65,85,.9);
+      border-radius:var(--radius);
+      padding:clamp(10px,1.4vw,16px);
       box-shadow:0 12px 30px rgba(0,0,0,.25);
     }
-    h1,h2{margin:0 0 10px 0;line-height:1.15}
+    h1,h2{margin:0 0 10px 0; line-height:1.15}
     h1{font-size:clamp(1.1rem,1rem + 1vw,1.55rem)}
     h2{font-size:clamp(1rem,.95rem + .75vw,1.25rem)}
     .hidden{display:none !important}
-    .setup{display:grid;gap:12px}
-    .setup-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
-    label{color:var(--muted);font-weight:600}
+    .setup{display:grid; gap:12px}
+    .setup-row{display:flex; flex-wrap:wrap; align-items:center; gap:10px}
+    label{color:var(--muted); font-weight:600}
     input,select,button{font:inherit}
     .round-input,.setup-row input{
-      min-height:var(--tap);border-radius:12px;border:1px solid var(--border);
-      background:var(--bg);color:var(--text);padding:10px 12px;outline:none;
+      min-height:var(--tap);
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:var(--bg);
+      color:var(--text);
+      padding:10px 12px;
+      outline:none;
     }
     .btn{
-      min-height:var(--tap);border:none;border-radius:12px;padding:10px 14px;
-      color:white;font-weight:800;cursor:pointer;touch-action:manipulation;
+      min-height:var(--tap);
+      border:none;
+      border-radius:12px;
+      padding:10px 14px;
+      color:white;
+      font-weight:800;
+      cursor:pointer;
+      touch-action:manipulation;
     }
     .btn-primary{background:linear-gradient(135deg,#2563eb,#1d4ed8)}
     .btn-success{background:linear-gradient(135deg,#16a34a,#15803d)}
     .btn-danger{background:linear-gradient(135deg,#b91c1c,#991b1b)}
     .btn-neutral{background:#475569}
-    .btn-grey{background:#374151;color:#9ca3af}
-    .player-count-btns{display:flex;gap:8px;flex-wrap:wrap}
-    .player-count-btn{min-width:48px;background:#334155;font-size:1.1rem}
-    .player-count-btn.active{background:linear-gradient(135deg,#2563eb,#1d4ed8)}
-    .player-name-inputs{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
-    .layout-play{display:grid;gap:12px}
+    .player-count-btns{display:flex; gap:8px; flex-wrap:wrap;}
+    .player-count-btn{min-width:48px; background:#334155; font-size:1.1rem;}
+    .player-count-btn.active{background:linear-gradient(135deg,#2563eb,#1d4ed8);}
+    .player-name-inputs{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+      gap:10px;
+    }
+    .layout-play{display:grid; gap:12px}
     .top-area{
-      display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);
-      gap:12px;align-items:start;
+      display:grid;
+      grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);
+      gap:12px;
+      align-items:start;
     }
     .info-panel,.scores-panel{
-      background:rgba(15,23,42,.72);border:1px solid rgba(51,65,85,.95);
-      border-radius:var(--radius);padding:12px;
+      background:rgba(15,23,42,.72);
+      border:1px solid rgba(51,65,85,.95);
+      border-radius:var(--radius);
+      padding:12px;
     }
-    .topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+    .topbar{display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:12px}
     .pill{
-      display:inline-flex;align-items:center;gap:6px;padding:8px 12px;
-      border-radius:999px;background:rgba(2,6,23,.35);border:1px solid rgba(51,65,85,.95);
-      font-weight:800;cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(2,6,23,.35);
+      border:1px solid rgba(51,65,85,.95);
+      font-weight:800;
+      cursor:pointer;
     }
     .pill:hover{background:rgba(51,65,85,.4)}
     .chrono-btn{
-      min-width:90px;padding:10px 16px;border-radius:14px;
-      background:rgba(2,6,23,.5);border:1px solid rgba(51,65,85,.95);
-      color:#e5e7eb;font-size:1.05rem;font-weight:900;cursor:pointer;touch-action:manipulation;
+      min-width:90px;
+      padding:10px 16px;
+      border-radius:14px;
+      background:rgba(2,6,23,.5);
+      border:1px solid rgba(51,65,85,.95);
+      color:#e5e7eb;
+      font-size:1.05rem;
+      font-weight:900;
+      cursor:pointer;
+      touch-action:manipulation;
     }
-    .chrono-btn.paused{color:#facc15;border-color:rgba(250,204,21,.4)}
-    .manche-info{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px}
+    .chrono-btn.paused{color:#facc15; border-color:rgba(250,204,21,.4);}
+    /* ── Infos de manche ── */
+    .manche-info{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:4px;
+    }
     .info-box{
-      display:flex;flex-direction:column;align-items:center;gap:4px;
-      padding:16px 12px;border-radius:14px;
-      background:rgba(2,6,23,.45);border:1px solid rgba(51,65,85,.9);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:4px;
+      padding:16px 12px;
+      border-radius:14px;
+      background:rgba(2,6,23,.45);
+      border:1px solid rgba(51,65,85,.9);
     }
-    .info-box-label{font-size:.76rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
-    .info-box-value{font-size:2.8rem;font-weight:900;color:#fff;line-height:1}
-    .round-progress{display:flex;gap:5px;margin-top:12px;justify-content:center}
-    .round-dot{flex:1;height:7px;border-radius:4px;background:rgba(51,65,85,.5);transition:background .3s}
-    .round-dot.done{background:#334155}
-    .round-dot.current{background:var(--accent);box-shadow:0 0 6px rgba(34,197,94,.5)}
+    .info-box-label{
+      font-size:.76rem;
+      font-weight:700;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.07em;
+    }
+    .info-box-value{
+      font-size:2.8rem;
+      font-weight:900;
+      color:#fff;
+      line-height:1;
+    }
+    /* ── Barre progression ── */
+    .round-progress{
+      display:flex;
+      gap:5px;
+      margin-top:12px;
+      justify-content:center;
+    }
+    .round-dot{
+      flex:1;
+      height:7px;
+      border-radius:4px;
+      background:rgba(51,65,85,.5);
+      transition:background .3s;
+    }
+    .round-dot.done{background:#334155;}
+    .round-dot.current{background:var(--accent); box-shadow:0 0 6px rgba(34,197,94,.5);}
+    /* ── Scores ── */
     .game-status{
-      padding:10px 12px;border-radius:12px;border:1px solid var(--border);
-      background:rgba(2,6,23,.35);color:#dbe4f0;line-height:1.35;flex:1;min-width:220px;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:rgba(2,6,23,.35);
+      color:#dbe4f0;
+      line-height:1.35;
+      flex:1;
+      min-width:220px;
     }
-    .players-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+    .players-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:8px;}
     .player-card{
-      background:rgba(2,6,23,.24);border:1px solid rgba(51,65,85,.95);
-      border-radius:14px;padding:8px 10px;
+      background:rgba(2,6,23,.24);
+      border:1px solid rgba(51,65,85,.95);
+      border-radius:14px;
+      padding:8px 10px;
     }
-    .player-name{font-size:.95rem;font-weight:900;flex:1;min-width:0;word-break:break-word}
-    .player-score{font-size:1.1rem;font-weight:900;color:#fff;white-space:nowrap;min-width:3ch;text-align:right}
-    .round-row{display:flex;align-items:center;gap:6px;width:100%}
-    .round-input{width:82px;min-width:0;text-align:center;font-weight:700;flex-shrink:0}
-    .round-input:disabled{opacity:.35;cursor:not-allowed}
+    .player-name{
+      font-size:.95rem; font-weight:900; flex:1; min-width:0; word-break:break-word;
+    }
+    .player-score{
+      font-size:1.1rem; font-weight:900; color:#fff; white-space:nowrap; min-width:3ch; text-align:right;
+    }
+    .round-row{display:flex; align-items:center; gap:6px; width:100%;}
+    .round-input{width:90px; min-width:0; text-align:center; font-weight:700; flex-shrink:0;}
     .small-btn{
-      min-height:36px;min-width:36px;padding:0 10px;border-radius:10px;
-      border:none;cursor:pointer;color:#fff;font-weight:900;line-height:1;touch-action:manipulation;
+      min-height:36px; min-width:36px; padding:0 10px; border-radius:10px;
+      border:none; cursor:pointer; color:#fff; font-weight:900; line-height:1; touch-action:manipulation;
     }
-    .small-btn:disabled{opacity:.35;cursor:not-allowed}
-    .small-add{background:var(--accent);color:#000}
+    .small-add{background:var(--accent); color:#000}
     .small-sub{background:var(--danger)}
     .leaderboard-section{
-      background:rgba(15,23,42,.8);border:1px solid rgba(34,197,94,.3);
-      border-radius:14px;padding:12px;margin-bottom:12px;
+      background:rgba(15,23,42,.8);
+      border:1px solid rgba(34,197,94,.3);
+      border-radius:14px;
+      padding:12px;
+      margin-bottom:12px;
     }
-    .leaderboard-title{font-size:.95rem;font-weight:900;color:var(--accent);margin-bottom:6px;text-align:center}
-    .leaderboard-grid{display:grid;gap:3px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+    .leaderboard-title{font-size:.95rem; font-weight:900; color:var(--accent); margin-bottom:6px; text-align:center;}
+    .leaderboard-grid{display:grid; gap:3px; grid-template-columns:repeat(auto-fit,minmax(180px,1fr));}
     .leaderboard-item{
-      position:relative;display:flex;justify-content:space-between;align-items:center;
-      padding:5px 8px;background:rgba(15,23,42,.6);border:1px solid rgba(51,65,85,.5);
-      border-radius:8px;font-size:.88rem;font-weight:700;overflow:hidden;
+      position:relative; display:flex; justify-content:space-between; align-items:center;
+      padding:5px 8px; background:rgba(15,23,42,.6); border:1px solid rgba(51,65,85,.5);
+      border-radius:8px; font-size:.88rem; font-weight:700; overflow:hidden;
     }
-    .leaderboard-item.leader{border-color:rgba(34,197,94,.55)}
+    .leaderboard-item.leader{border-color:rgba(34,197,94,.55);}
     .leaderboard-progress{
-      position:absolute;left:0;top:0;bottom:0;background:rgba(34,197,94,.15);
-      border-radius:8px;transition:width .4s ease;pointer-events:none;
+      position:absolute; left:0; top:0; bottom:0;
+      background:rgba(34,197,94,.15); border-radius:8px;
+      transition:width .4s ease; pointer-events:none;
     }
-    .leaderboard-rank,.leaderboard-name,.leaderboard-score{position:relative;z-index:1}
-    .leaderboard-rank{color:var(--accent);width:20px;text-align:center;font-weight:900;font-size:.9rem}
-    .leaderboard-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding-left:4px}
-    .leaderboard-score{color:#fff;font-weight:900;min-width:42px;text-align:right;font-size:.9rem}
+    .leaderboard-rank,.leaderboard-name,.leaderboard-score{position:relative; z-index:1;}
+    .leaderboard-rank{color:var(--accent); width:20px; text-align:center; font-weight:900; font-size:.9rem;}
+    .leaderboard-name{flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; padding-left:4px;}
+    .leaderboard-score{color:#fff; font-weight:900; min-width:42px; text-align:right; font-size:.9rem;}
     .winner-panel{
-      background:rgba(15,23,42,.72);border:1px solid rgba(34,197,94,.6);
-      border-radius:var(--radius);padding:12px;box-shadow:0 0 24px rgba(34,197,94,.12);
+      background:rgba(15,23,42,.72);
+      border:1px solid rgba(34,197,94,.6);
+      border-radius:var(--radius);
+      padding:12px;
+      box-shadow:0 0 24px rgba(34,197,94,.12);
     }
-    .winner-panel-inner{display:grid;gap:10px}
-    .winner-title{font-size:1.1rem;font-weight:900;color:#fef9c3}
-    .winner-actions{display:flex;flex-wrap:wrap;gap:10px}
-    /* ── Tableau de détail ── */
-    .detail-section{
-      background:rgba(15,23,42,.72);border:1px solid rgba(51,65,85,.9);
-      border-radius:var(--radius);padding:0;overflow:hidden;margin-top:0;
-    }
-    .detail-header{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:12px 16px;cursor:pointer;user-select:none;
-    }
-    .detail-header:hover{background:rgba(51,65,85,.2)}
-    .detail-header-title{font-size:.95rem;font-weight:900;color:var(--muted)}
-    .detail-chevron{color:var(--muted);transition:transform .25s;font-size:1rem}
-    .detail-chevron.open{transform:rotate(180deg)}
-    .detail-body{display:none;padding:0 12px 12px}
-    .detail-body.open{display:block}
-    .detail-table{width:100%;border-collapse:collapse;font-size:.82rem}
-    .detail-table th{
-      padding:6px 8px;text-align:center;color:var(--muted);font-weight:700;
-      border-bottom:1px solid rgba(51,65,85,.7);position:sticky;top:0;
-      background:rgba(15,23,42,.95);
-    }
-    .detail-table th:first-child{text-align:left}
-    .detail-table td{
-      padding:5px 8px;text-align:center;border-bottom:1px solid rgba(51,65,85,.3);
-      font-weight:700;
-    }
-    .detail-table td:first-child{color:var(--muted);text-align:left;font-size:.78rem}
-    .detail-table tr:last-child td{border-bottom:none}
-    .detail-table tr.total-row td{
-      border-top:2px solid rgba(51,65,85,.9);color:#fff;font-size:.9rem;
-      padding-top:8px;
-    }
-    .detail-table tr.total-row td:first-child{color:var(--accent)}
-    /* ── Known players ── */
+    .winner-panel-inner{display:grid; gap:10px;}
+    .winner-title{font-size:1.1rem; font-weight:900; color:#fef9c3;}
+    .winner-actions{display:flex; flex-wrap:wrap; gap:10px;}
     .known-trash-btn{
-      min-height:32px;padding:4px 10px;font-size:1rem;background:transparent;
-      border:1px solid rgba(51,65,85,.7);border-radius:8px;cursor:pointer;opacity:.6;
+      min-height:32px; padding:4px 10px; font-size:1rem; background:transparent;
+      border:1px solid rgba(51,65,85,.7); border-radius:8px; cursor:pointer; opacity:.6;
     }
-    .known-trash-btn.active{opacity:1;border-color:#ef4444;background:rgba(239,68,68,.12)}
+    .known-trash-btn.active{opacity:1; border-color:#ef4444; background:rgba(239,68,68,.12);}
     .known-chip{
-      padding:7px 14px;border-radius:999px;border:1px solid rgba(51,65,85,.9);
-      background:rgba(2,6,23,.4);color:#e5e7eb;font-weight:700;cursor:pointer;font-size:.9rem;
+      padding:7px 14px; border-radius:999px; border:1px solid rgba(51,65,85,.9);
+      background:rgba(2,6,23,.4); color:#e5e7eb; font-weight:700; cursor:pointer; font-size:.9rem;
     }
-    .known-chip.used{opacity:.4;background:rgba(51,65,85,.3)}
-    .known-chip.delete-mode{border-color:#ef4444;color:#fca5a5}
-    @media(max-width:900px){.top-area{grid-template-columns:1fr}}
-    @media(max-width:640px){
-      .app{padding:8px;gap:8px}.section{padding:10px}
+    .known-chip.used{opacity:.4; background:rgba(51,65,85,.3);}
+    .known-chip.delete-mode{border-color:#ef4444; color:#fca5a5;}
+    @media (max-width:900px){.top-area{grid-template-columns:1fr}}
+    @media (max-width:640px){
+      .app{padding:8px; gap:8px}
+      .section{padding:10px}
       .players-grid{grid-template-columns:1fr}
       .leaderboard-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
-<div class="app">
+  <div class="app">
 
-  <!-- SETUP -->
-  <div class="section" id="setupSection">
-    <h1>♛ Les Cinq Rois — Compteur de points</h1>
-    <div class="setup">
-      <div class="setup-row">
-        <label>Nombre de joueurs :</label>
-        <div class="player-count-btns">
-          <button class="btn player-count-btn" data-count="2">2</button>
-          <button class="btn player-count-btn" data-count="3">3</button>
-          <button class="btn player-count-btn active" data-count="4">4</button>
-          <button class="btn player-count-btn" data-count="5">5</button>
-          <button class="btn player-count-btn" data-count="6">6</button>
-          <button class="btn player-count-btn" data-count="7">7</button>
+    <!-- SETUP -->
+    <div class="section" id="setupSection">
+      <h1>♛ Les Cinq Rois — Compteur de points</h1>
+      <div class="setup">
+        <div class="setup-row">
+          <label>Nombre de joueurs :</label>
+          <div class="player-count-btns">
+            <button class="btn player-count-btn" data-count="2">2</button>
+            <button class="btn player-count-btn" data-count="3">3</button>
+            <button class="btn player-count-btn active" data-count="4">4</button>
+            <button class="btn player-count-btn" data-count="5">5</button>
+            <button class="btn player-count-btn" data-count="6">6</button>
+            <button class="btn player-count-btn" data-count="7">7</button>
+          </div>
+        </div>
+        <div class="player-name-inputs" id="playerNameInputs"></div>
+        <div class="setup-row">
+          <button class="btn btn-success" id="startGameBtn">Démarrer la partie</button>
+        </div>
+        <div id="knownPlayersBlock" class="hidden">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <label>Joueurs connus :</label>
+            <button class="btn known-trash-btn" id="trashModeBtn" type="button">🗑️</button>
+            <button class="btn known-trash-btn" id="sortModeBtn" type="button">🔤</button>
+          </div>
+          <div id="knownPlayersList" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;"></div>
         </div>
       </div>
-      <div class="player-name-inputs" id="playerNameInputs"></div>
-      <div class="setup-row">
-        <button class="btn btn-success" id="startGameBtn">Démarrer la partie</button>
-      </div>
-      <div id="knownPlayersBlock" class="hidden">
-        <div style="display:flex;align-items:center;gap:10px;">
-          <label>Joueurs connus :</label>
-          <button class="btn known-trash-btn" id="trashModeBtn" type="button">🗑️</button>
-          <button class="btn known-trash-btn" id="sortModeBtn" type="button">🔤</button>
+    </div>
+
+    <!-- JEU -->
+    <div class="layout-play hidden" id="gameView">
+      <div class="top-area">
+
+        <!-- Infos manche -->
+        <div class="info-panel">
+          <div class="topbar">
+            <div class="pill" id="roundPill">Manche <span id="roundNumber">1</span> / 11</div>
+            <button class="chrono-btn" id="chronoBtn" type="button">0 min</button>
+          </div>
+          <div class="manche-info">
+            <div class="info-box">
+              <div class="info-box-label">🃏 Cartes en main</div>
+              <div class="info-box-value" id="cartesValue">3</div>
+            </div>
+            <div class="info-box">
+              <div class="info-box-label">♛ Atout</div>
+              <div class="info-box-value" id="atoutValue">3</div>
+            </div>
+          </div>
+          <div class="round-progress" id="roundProgress"></div>
         </div>
-        <div id="knownPlayersList" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;"></div>
+
+        <!-- Fin de partie -->
+        <div class="winner-panel hidden" id="winnerPanel">
+          <div class="winner-panel-inner">
+            <div class="winner-title" id="winnerText"></div>
+            <div class="winner-actions">
+              <button class="btn btn-success" id="restartSameBtn">Recommencer avec les mêmes joueurs</button>
+              <button class="btn btn-neutral" id="backHomeBtn">Revenir à l'accueil</button>
+              <button class="btn btn-danger" id="cancelRoundBtn">Annuler dernière manche</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scores -->
+      <div class="scores-panel">
+        <div style="display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap;margin-bottom:12px;">
+          <h2 style="margin:0;align-self:center;">Scores</h2>
+          <div class="game-status" id="gameStatus">La partie est en cours.</div>
+        </div>
+        <div id="leaderboardSection" class="leaderboard-section">
+          <div class="leaderboard-title" id="leaderboardTitle" style="cursor:pointer;">🏆 Classement actuel</div>
+          <div class="leaderboard-grid" id="leaderboardList"></div>
+        </div>
+        <div class="players-grid" id="playersGrid"></div>
+        <div style="text-align:center;margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+          <button class="btn btn-primary" id="nextRoundBtnBottom">Manche suivante</button>
+          <button class="btn btn-danger" id="cancelRoundBtnBottom">Annuler dernière manche</button>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- JEU -->
-  <div class="layout-play hidden" id="gameView">
-    <div class="top-area">
+  <script>
+    // ── Les 11 manches : cartes en main + atout ───────────────────────────────
+    const MANCHES = [
+      { cartes:  3, atout: '3',  color: '#e5e7eb' },
+      { cartes:  4, atout: '4',  color: '#e5e7eb' },
+      { cartes:  5, atout: '5',  color: '#e5e7eb' },
+      { cartes:  6, atout: '6',  color: '#e5e7eb' },
+      { cartes:  7, atout: '7',  color: '#e5e7eb' },
+      { cartes:  8, atout: '8',  color: '#e5e7eb' },
+      { cartes:  9, atout: '9',  color: '#e5e7eb' },
+      { cartes: 10, atout: '10', color: '#e5e7eb' },
+      { cartes: 11, atout: 'V',  color: '#60a5fa' },
+      { cartes: 12, atout: 'D',  color: '#f472b6' },
+      { cartes: 13, atout: 'R',  color: '#facc15' },
+    ];
+    const NB_MANCHES = 11;
 
-      <!-- Infos manche -->
-      <div class="info-panel">
-        <div class="topbar">
-          <div class="pill" id="roundPill">Manche <span id="roundNumber">1</span> / 11</div>
-          <button class="chrono-btn" id="chronoBtn" type="button">0 min</button>
-        </div>
-        <div class="manche-info">
-          <div class="info-box">
-            <div class="info-box-label">🃏 Cartes en main</div>
-            <div class="info-box-value" id="cartesValue">3</div>
-          </div>
-          <div class="info-box">
-            <div class="info-box-label">♛ Atout</div>
-            <div class="info-box-value" id="atoutValue">3</div>
-          </div>
-        </div>
-        <div class="round-progress" id="roundProgress"></div>
-      </div>
+    const PLAYER_COLORS = ['#60a5fa','#f472b6','#facc15','#ffffff','#fb923c','#a78bfa','#22d3ee'];
 
-      <!-- Fin de partie -->
-      <div class="winner-panel hidden" id="winnerPanel">
-        <div class="winner-panel-inner">
-          <div class="winner-title" id="winnerText"></div>
-          <div class="winner-actions">
-            <button class="btn btn-success" id="restartSameBtn">Recommencer avec les mêmes joueurs</button>
-            <button class="btn btn-neutral" id="backHomeBtn">Revenir à l'accueil</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    // ── DOM ───────────────────────────────────────────────────────────────────
+    const startGameBtn         = document.getElementById('startGameBtn');
+    const playerNameInputs     = document.getElementById('playerNameInputs');
+    const setupSection         = document.getElementById('setupSection');
+    const gameView             = document.getElementById('gameView');
+    const playersGrid          = document.getElementById('playersGrid');
+    const gameStatus           = document.getElementById('gameStatus');
+    const winnerPanel          = document.getElementById('winnerPanel');
+    const winnerText           = document.getElementById('winnerText');
+    const restartSameBtn       = document.getElementById('restartSameBtn');
+    const backHomeBtn          = document.getElementById('backHomeBtn');
+    const cancelRoundBtn       = document.getElementById('cancelRoundBtn');
+    const roundPill            = document.getElementById('roundPill');
+    const roundNumber          = document.getElementById('roundNumber');
+    const leaderboardList      = document.getElementById('leaderboardList');
+    const nextRoundBtnBottom   = document.getElementById('nextRoundBtnBottom');
+    const cancelRoundBtnBottom = document.getElementById('cancelRoundBtnBottom');
+    const cartesValue          = document.getElementById('cartesValue');
+    const atoutValue           = document.getElementById('atoutValue');
+    const roundProgress        = document.getElementById('roundProgress');
 
-    <!-- Scores -->
-    <div class="scores-panel">
-      <div style="display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap;margin-bottom:12px;">
-        <h2 style="margin:0;align-self:center;">Scores des joueurs</h2>
-        <div class="game-status" id="gameStatus">La partie est en cours.</div>
-      </div>
-      <div id="leaderboardSection" class="leaderboard-section">
-        <div class="leaderboard-title" id="leaderboardTitle" style="cursor:pointer;">🏆 Classement actuel</div>
-        <div class="leaderboard-grid" id="leaderboardList"></div>
-      </div>
-      <div class="players-grid" id="playersGrid"></div>
-      <div style="margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
-        <button class="btn btn-primary" id="nextRoundBtnBottom">Manche suivante</button>
-        <button class="btn btn-grey" id="prevRoundBtn">◀ Manche précédente</button>
-      </div>
-    </div>
+    // ── État ──────────────────────────────────────────────────────────────────
+    let selectedPlayerCount = 4;
+    let players = [];
+    let gameOver = false;
+    let round = 1;
+    let roundPending = [];
+    let lastRoundScores = [];
+    let leaderboardSortAlpha = false;
+    let trashMode = false;
+    let sortByRecent = false;
+    let knownPlayers = JSON.parse(localStorage.getItem('cinqrois_known_players') || '[]');
+    let knownPlayersUsage = JSON.parse(localStorage.getItem('cinqrois_known_usage') || '{}');
 
-    <!-- Détail des manches -->
-    <div class="detail-section" id="detailSection">
-      <div class="detail-header" id="detailHeader">
-        <span class="detail-header-title">📋 Détail des manches</span>
-        <span class="detail-chevron" id="detailChevron">▼</span>
-      </div>
-      <div class="detail-body" id="detailBody">
-        <div style="overflow-x:auto;">
-          <table class="detail-table" id="detailTable"></table>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<script>
-  // ── Les 11 manches ────────────────────────────────────────────────────────
-  const MANCHES = [
-    { cartes:  3, atout: '3',  color: '#e5e7eb' },
-    { cartes:  4, atout: '4',  color: '#e5e7eb' },
-    { cartes:  5, atout: '5',  color: '#e5e7eb' },
-    { cartes:  6, atout: '6',  color: '#e5e7eb' },
-    { cartes:  7, atout: '7',  color: '#e5e7eb' },
-    { cartes:  8, atout: '8',  color: '#e5e7eb' },
-    { cartes:  9, atout: '9',  color: '#e5e7eb' },
-    { cartes: 10, atout: '10', color: '#e5e7eb' },
-    { cartes: 11, atout: 'V',  color: '#60a5fa' },
-    { cartes: 12, atout: 'D',  color: '#f472b6' },
-    { cartes: 13, atout: 'R',  color: '#facc15' },
-  ];
-  const NB_MANCHES = 11;
-  const PLAYER_COLORS = ['#60a5fa','#f472b6','#facc15','#ffffff','#fb923c','#a78bfa','#22d3ee'];
-
-  // ── DOM ───────────────────────────────────────────────────────────────────
-  const startGameBtn       = document.getElementById('startGameBtn');
-  const playerNameInputs   = document.getElementById('playerNameInputs');
-  const setupSection       = document.getElementById('setupSection');
-  const gameView           = document.getElementById('gameView');
-  const playersGrid        = document.getElementById('playersGrid');
-  const gameStatus         = document.getElementById('gameStatus');
-  const winnerPanel        = document.getElementById('winnerPanel');
-  const winnerText         = document.getElementById('winnerText');
-  const restartSameBtn     = document.getElementById('restartSameBtn');
-  const backHomeBtn        = document.getElementById('backHomeBtn');
-  const roundPill          = document.getElementById('roundPill');
-  const roundNumber        = document.getElementById('roundNumber');
-  const leaderboardList    = document.getElementById('leaderboardList');
-  const nextRoundBtnBottom = document.getElementById('nextRoundBtnBottom');
-  const prevRoundBtn       = document.getElementById('prevRoundBtn');
-  const cartesValue        = document.getElementById('cartesValue');
-  const atoutValue         = document.getElementById('atoutValue');
-  const roundProgress      = document.getElementById('roundProgress');
-  const detailHeader       = document.getElementById('detailHeader');
-  const detailBody         = document.getElementById('detailBody');
-  const detailChevron      = document.getElementById('detailChevron');
-  const detailTable        = document.getElementById('detailTable');
-
-  // ── État ──────────────────────────────────────────────────────────────────
-  let selectedPlayerCount = 4;
-  let players = [];      // [{ name, score }]  score = cumul courant
-  let gameOver = false;
-  let round = 1;         // manche affichée (1-based)
-  // roundScores[r][i] = points saisis pour le joueur i à la manche r (0-based indexing sur r)
-  // roundScores est un tableau de NB_MANCHES entrées (peut contenir undefined si non encore saisie)
-  let roundScores = [];  // roundScores[mancheIndex][joueurIndex] = points (ou undefined)
-  let leaderboardSortAlpha = false;
-  let trashMode = false;
-  let sortByRecent = false;
-  let knownPlayers      = JSON.parse(localStorage.getItem('cinqrois_known_players') || '[]');
-  let knownPlayersUsage = JSON.parse(localStorage.getItem('cinqrois_known_usage')   || '{}');
-
-  // ── Chrono ────────────────────────────────────────────────────────────────
-  let chronoSeconds = 0, chronoPaused = false, chronoInterval = null;
-  const chronoBtn = document.getElementById('chronoBtn');
-  function formatChrono(s) { return Math.round(s/60)+' min'; }
-  function updateChronoDisplay() {
-    chronoBtn.textContent = (chronoPaused ? '⏸ ' : '') + formatChrono(chronoSeconds);
-    chronoBtn.classList.toggle('paused', chronoPaused);
-  }
-  function startChrono() {
-    chronoSeconds = 0; chronoPaused = false;
-    clearInterval(chronoInterval); updateChronoDisplay();
-    chronoInterval = setInterval(() => { if(!chronoPaused){chronoSeconds++;updateChronoDisplay();} }, 1000);
-  }
-  function stopChrono() { clearInterval(chronoInterval); chronoInterval = null; }
-  chronoBtn.addEventListener('click', () => {
-    if (!chronoInterval && !chronoPaused) return;
-    chronoPaused = !chronoPaused; updateChronoDisplay();
-  });
-
-  // ── Calcul du score cumulé jusqu'à une manche (exclusive) ────────────────
-  // cumScore(mancheIdx, joueurIdx) = somme des scores des manches 0..mancheIdx-1
-  function cumScore(mancheIdx, joueurIdx) {
-    let total = 0;
-    for (let m = 0; m < mancheIdx; m++) {
-      const v = roundScores[m] ? roundScores[m][joueurIdx] : undefined;
-      if (v !== undefined) total += v;
+    // ── Chrono ────────────────────────────────────────────────────────────────
+    let chronoSeconds = 0, chronoPaused = false, chronoInterval = null;
+    const chronoBtn = document.getElementById('chronoBtn');
+    function formatChrono(s) { return Math.round(s / 60) + ' min'; }
+    function updateChronoDisplay() {
+      chronoBtn.textContent = (chronoPaused ? '⏸ ' : '') + formatChrono(chronoSeconds);
+      chronoBtn.classList.toggle('paused', chronoPaused);
     }
-    return total;
-  }
-
-  // Score affiché pour le joueur i = cumul de toutes les manches saisies
-  function totalScore(joueurIdx) {
-    let total = 0;
-    for (let m = 0; m < NB_MANCHES; m++) {
-      const v = roundScores[m] ? roundScores[m][joueurIdx] : undefined;
-      if (v !== undefined) total += v;
+    function startChrono() {
+      chronoSeconds = 0; chronoPaused = false;
+      clearInterval(chronoInterval); updateChronoDisplay();
+      chronoInterval = setInterval(() => { if (!chronoPaused) { chronoSeconds++; updateChronoDisplay(); } }, 1000);
     }
-    return total;
-  }
-
-  // Recalcule players[i].score à partir de roundScores
-  function recomputeScores() {
-    players.forEach((p, i) => { p.score = totalScore(i); });
-  }
-
-  // ── Infos manche ──────────────────────────────────────────────────────────
-  function updateMancheInfo() {
-    const m = MANCHES[round-1];
-    roundNumber.textContent = round;
-    cartesValue.textContent = m.cartes;
-    atoutValue.textContent  = m.atout;
-    atoutValue.style.color  = m.color;
-    roundProgress.innerHTML = '';
-    for (let i = 1; i <= NB_MANCHES; i++) {
-      const d = document.createElement('div');
-      d.className = 'round-dot'+(i < round ? ' done' : i === round ? ' current' : '');
-      roundProgress.appendChild(d);
-    }
-  }
-
-  // ── Classement ────────────────────────────────────────────────────────────
-  function updateLeaderboard() {
-    const byScore = [...players].sort((a,b) => a.score - b.score);
-    const rankMap = new Map();
-    byScore.forEach((p,i) => rankMap.set(p,i));
-    const displayed = leaderboardSortAlpha
-      ? [...players].sort((a,b) => a.name.localeCompare(b.name,'fr',{sensitivity:'base'}))
-      : byScore;
-    document.getElementById('leaderboardTitle').textContent =
-      leaderboardSortAlpha ? '🔤 Classement actuel' : '🏆 Classement actuel';
-    leaderboardList.innerHTML = '';
-    const maxScore = Math.max(...players.map(p => p.score), 1);
-    displayed.forEach(player => {
-      const rank = rankMap.get(player);
-      const isLeader = rank === 0;
-      const item = document.createElement('div');
-      item.className = 'leaderboard-item'+(isLeader ? ' leader' : '');
-      const pct = Math.min((player.score / maxScore)*100, 100);
-      const color = PLAYER_COLORS[players.indexOf(player) % PLAYER_COLORS.length];
-      item.innerHTML = `
-        <div class="leaderboard-progress" style="width:${pct}%"></div>
-        <span class="leaderboard-rank">${isLeader ? '★' : (rank+1)+'.'}</span>
-        <span class="leaderboard-name" style="color:${color}">${player.name}</span>
-        <span class="leaderboard-score">${player.score}</span>
-      `;
-      leaderboardList.appendChild(item);
+    function stopChrono() { clearInterval(chronoInterval); chronoInterval = null; }
+    chronoBtn.addEventListener('click', () => {
+      if (!chronoInterval && !chronoPaused) return;
+      chronoPaused = !chronoPaused; updateChronoDisplay();
     });
-  }
 
-  function updateScores() {
-    players.forEach((p,i) => { const el = document.getElementById(`score-${i}`); if(el) el.textContent = p.score; });
-  }
-  function updateScoresAndLeaderboard() { updateScores(); updateLeaderboard(); }
+    // ── Affichage infos manche ────────────────────────────────────────────────
+    function updateMancheInfo() {
+      const m = MANCHES[round - 1];
+      roundNumber.textContent = round;
+      cartesValue.textContent = m.cartes;
+      atoutValue.textContent  = m.atout;
+      atoutValue.style.color  = m.color;
+      // dots
+      roundProgress.innerHTML = '';
+      for (let i = 1; i <= NB_MANCHES; i++) {
+        const d = document.createElement('div');
+        d.className = 'round-dot' + (i < round ? ' done' : i === round ? ' current' : '');
+        roundProgress.appendChild(d);
+      }
+    }
 
-  // ── Verrouillage des champs ───────────────────────────────────────────────
-  function setInputsLocked(locked) {
-    players.forEach((_,i) => {
-      const inp = document.getElementById(`round-${i}`);
-      const btnA = document.getElementById(`btn-add-${i}`);
-      const btnS = document.getElementById(`btn-sub-${i}`);
-      if (inp)  { inp.disabled  = locked; }
-      if (btnA) { btnA.disabled = locked; }
-      if (btnS) { btnS.disabled = locked; }
-    });
-  }
+    // ── Classement ────────────────────────────────────────────────────────────
+    function updateLeaderboard() {
+      // Rang par score (du plus petit au plus grand) — toujours calculé
+      const byScore = [...players].sort((a, b) => a.score - b.score);
+      const rankMap = new Map(); // player → rang par score
+      byScore.forEach((p, i) => rankMap.set(p, i));
 
-  // ── Tableau de détail ─────────────────────────────────────────────────────
-  function updateDetailTable() {
-    if (!players.length) { detailTable.innerHTML = ''; return; }
-    // En-tête
-    let html = '<thead><tr><th>Manche</th>';
-    players.forEach(p => { html += `<th style="color:${PLAYER_COLORS[players.indexOf(p)%PLAYER_COLORS.length]}">${p.name}</th>`; });
-    html += '</tr></thead><tbody>';
-    // Lignes manches
-    for (let m = 0; m < NB_MANCHES; m++) {
-      const isCurrentOrFuture = (m+1) >= round && !gameOver;
-      html += `<tr>`;
-      html += `<td>M${m+1} · ${MANCHES[m].atout}</td>`;
-      players.forEach((_,i) => {
-        const v = roundScores[m] ? roundScores[m][i] : undefined;
-        const display = v !== undefined ? v : (isCurrentOrFuture && m+1 > round ? '—' : (m+1 < round ? '—' : ''));
-        html += `<td>${display !== '' && display !== '—' ? (v >= 0 ? '+'+v : v) : display}</td>`;
+      // Liste affichée : par score ou alphabétique selon le mode
+      const displayed = leaderboardSortAlpha
+        ? [...players].sort((a, b) => a.name.localeCompare(b.name,'fr',{sensitivity:'base'}))
+        : byScore;
+
+      document.getElementById('leaderboardTitle').textContent =
+        leaderboardSortAlpha ? '🔤 Classement actuel' : '🏆 Classement actuel';
+      leaderboardList.innerHTML = '';
+      const maxScore = Math.max(...players.map(p => p.score), 1);
+      displayed.forEach(player => {
+        const rank = rankMap.get(player);
+        const isLeader = rank === 0;
+        const item = document.createElement('div');
+        item.className = 'leaderboard-item' + (isLeader ? ' leader' : '');
+        const pct = Math.min((player.score / maxScore) * 100, 100);
+        const color = PLAYER_COLORS[players.indexOf(player) % PLAYER_COLORS.length];
+        item.innerHTML = `
+          <div class="leaderboard-progress" style="width:${pct}%"></div>
+          <span class="leaderboard-rank">${isLeader ? '★' : (rank+1)+'.'}</span>
+          <span class="leaderboard-name" style="color:${color}">${player.name}</span>
+          <span class="leaderboard-score">${player.score}</span>
+        `;
+        leaderboardList.appendChild(item);
       });
-      html += '</tr>';
     }
-    // Ligne total
-    html += '<tr class="total-row"><td>Total</td>';
-    players.forEach((_,i) => { html += `<td>${totalScore(i)}</td>`; });
-    html += '</tr></tbody>';
-    detailTable.innerHTML = html;
-  }
 
-  // ── Rendu des cartes joueurs ──────────────────────────────────────────────
-  function renderPlayers() {
-    playersGrid.innerHTML = '';
-    const mancheIdx = round - 1;
-    players.forEach((player, index) => {
-      const color = PLAYER_COLORS[index % PLAYER_COLORS.length];
-      const savedVal = roundScores[mancheIdx] ? roundScores[mancheIdx][index] : undefined;
-      const card = document.createElement('div');
-      card.className = 'player-card';
-      card.innerHTML = `
-        <div class="round-row">
-          <div class="player-name" style="color:${color}" title="${player.name}">${player.name}</div>
-          <input class="round-input" type="number" step="1" id="round-${index}"
-            placeholder="Points" value="${savedVal !== undefined ? savedVal : ''}">
-          <button class="small-btn small-add" id="btn-add-${index}" type="button">+</button>
-          <button class="small-btn small-sub" id="btn-sub-${index}" type="button">−</button>
-          <div class="player-score" id="score-${index}">${player.score}</div>
-        </div>
-      `;
-      playersGrid.appendChild(card);
+    function setInputsLocked(locked) {
+      players.forEach((_, i) => {
+        const input = document.getElementById(`round-${i}`);
+        const btnAdd = document.querySelector(`button[onclick="addRoundPoints(${i})"]`);
+        const btnSub = document.querySelector(`button[onclick="subtractRoundPoints(${i})"]`);
+        if (input) { input.disabled = locked; input.style.opacity = locked ? '.35' : ''; }
+        if (btnAdd) { btnAdd.disabled = locked; btnAdd.style.opacity = locked ? '.35' : ''; }
+        if (btnSub) { btnSub.disabled = locked; btnSub.style.opacity = locked ? '.35' : ''; }
+      });
+    }
+    function updateScores() {
+      players.forEach((p, i) => { const el = document.getElementById(`score-${i}`); if (el) el.textContent = p.score; });
+    }
+    function updateScoresAndLeaderboard() { updateScores(); updateLeaderboard(); }
 
-      const input = card.querySelector(`#round-${index}`);
+    // ── Fin de partie ─────────────────────────────────────────────────────────
+    function endGame() {
+      gameOver = true; stopChrono();
+      const now = Date.now();
+      players.forEach(p => {
+        if (!knownPlayers.includes(p.name)) knownPlayers.push(p.name);
+        knownPlayersUsage[p.name] = now;
+      });
+      localStorage.setItem('cinqrois_known_players', JSON.stringify(knownPlayers));
+      localStorage.setItem('cinqrois_known_usage', JSON.stringify(knownPlayersUsage));
+      const minScore = Math.min(...players.map(p => p.score));
+      const winners  = players.filter(p => p.score === minScore);
+      winnerPanel.classList.remove('hidden');
+      nextRoundBtnBottom.classList.add('hidden');
+      winnerText.textContent = winners.length === 1
+        ? `Partie terminée ! 🏆 Vainqueur : ${winners[0].name} avec ${minScore} points.`
+        : `Partie terminée ! Égalité : ${winners.map(w=>w.name).join(', ')} avec ${minScore} points.`;
+      gameStatus.textContent = 'Les 11 manches sont terminées.';
+      setInputsLocked(true);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-      // Sélectionner tout au focus
-      input.addEventListener('focus', () => input.select());
+    // ── Manche suivante ───────────────────────────────────────────────────────
+    function nextRound() {
+      if (gameOver) return;
+      const baseScores = players.map((p, i) => p.score - (roundPending[i] ?? 0));
+      lastRoundScores = baseScores;
+      players.forEach((p, i) => { p.score = baseScores[i]; });
+      players.forEach((_, i) => {
+        const input = document.getElementById(`round-${i}`);
+        const inputVal = input ? parseInt(input.value, 10) : NaN;
+        const val = !Number.isNaN(inputVal) ? inputVal : roundPending[i];
+        if (val !== undefined) { players[i].score += val; if (input) input.value = ''; }
+      });
+      roundPending = [];
+      updateScoresAndLeaderboard();
+      if (round >= NB_MANCHES) { endGame(); return; }
+      round++;
+      updateMancheInfo();
+      gameStatus.textContent = `Manche ${round - 1} terminée. Manche ${round} en cours.`;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-      // Aperçu du score en temps réel pendant la saisie
-      input.addEventListener('input', () => {
-        const val = parseInt(input.value, 10);
-        const el = document.getElementById(`score-${index}`);
-        if (!el) return;
-        const base = cumScore(mancheIdx, index);
-        // cumul de toutes les autres manches (pas la courante)
-        const otherManches = (() => {
-          let t = 0;
-          for (let m = 0; m < NB_MANCHES; m++) {
-            if (m === mancheIdx) continue;
-            const v = roundScores[m] ? roundScores[m][index] : undefined;
-            if (v !== undefined) t += v;
-          }
-          return t;
-        })();
-        if (Number.isNaN(val)) {
-          // Affiche le score sans la manche courante si elle était déjà saisie
-          const cur = roundScores[mancheIdx] ? roundScores[mancheIdx][index] : undefined;
-          el.textContent = otherManches + (cur !== undefined ? cur : 0);
+    window.applyRoundPoints = function(index) {
+      if (gameOver) return;
+      const input = document.getElementById(`round-${index}`);
+      const value = parseInt(input.value, 10);
+      if (Number.isNaN(value)) return;
+      input.value = '';
+      if (roundPending[index] !== undefined) players[index].score -= roundPending[index];
+      roundPending[index] = value;
+      players[index].score += value;
+      updateScores();
+    };
+    window.addRoundPoints      = i => applyRoundPoints(i);
+    window.subtractRoundPoints = function(index) {
+      if (gameOver) return;
+      const input = document.getElementById(`round-${index}`);
+      const value = parseInt(input.value, 10);
+      if (Number.isNaN(value)) return;
+      input.value = '';
+      if (roundPending[index] !== undefined) players[index].score -= roundPending[index];
+      roundPending[index] = -value;
+      players[index].score -= value;
+      updateScores();
+    };
+
+    function cancelLastRound() {
+      if (!lastRoundScores.length) return;
+      players.forEach((p, i) => { p.score = lastRoundScores[i]; });
+      lastRoundScores = []; roundPending = [];
+      if (gameOver) { gameOver = false; startChrono(); winnerPanel.classList.add('hidden'); setInputsLocked(false); }
+      if (round > 1) round--;
+      updateMancheInfo();
+      nextRoundBtnBottom.classList.remove('hidden');
+      gameStatus.textContent = `Manche ${round} en cours.`;
+      updateScoresAndLeaderboard();
+      renderPlayers();
+    }
+
+    // ── Démarrer ──────────────────────────────────────────────────────────────
+    function startFromSetup() {
+      players = [];
+      let hasEmpty = false;
+      for (let i = 0; i < selectedPlayerCount; i++) {
+        const input = document.getElementById(`playerName${i}`);
+        if (!input || !input.value.trim()) {
+          hasEmpty = true;
+          if (input) { input.style.borderColor='#ef4444'; input.style.boxShadow='0 0 0 2px rgba(239,68,68,.3)'; input.placeholder='Nom requis !'; }
         } else {
-          el.textContent = otherManches + val;
-        }
-      });
-
-      // Entrée → valider et passer au suivant
-      input.addEventListener('keydown', e => {
-        if (e.key !== 'Enter') return;
-        e.preventDefault();
-        savePlayerScore(index);
-        const next = document.getElementById(`round-${index+1}`);
-        if (next) { next.focus(); next.select(); }
-      });
-
-      // Boutons + et −
-      document.getElementById(`btn-add-${index}`).addEventListener('click', () => {
-        savePlayerScore(index, +1);
-        const next = document.getElementById(`round-${index+1}`);
-        if (next) { next.focus(); next.select(); }
-      });
-      document.getElementById(`btn-sub-${index}`).addEventListener('click', () => {
-        savePlayerScore(index, -1);
-        const next = document.getElementById(`round-${index+1}`);
-        if (next) { next.focus(); next.select(); }
-      });
-    });
-
-    if (gameOver) setInputsLocked(true);
-  }
-
-  // Sauvegarde le score saisi pour le joueur index à la manche courante
-  // sign: +1 = addition, -1 = soustraction, undefined = tel quel
-  function savePlayerScore(index, sign) {
-    const input = document.getElementById(`round-${index}`);
-    if (!input) return;
-    const raw = parseInt(input.value, 10);
-    if (Number.isNaN(raw)) return;
-    const value = sign !== undefined ? sign * raw : raw;
-    const mancheIdx = round - 1;
-    if (!roundScores[mancheIdx]) roundScores[mancheIdx] = [];
-    roundScores[mancheIdx][index] = value;
-    // Ne pas effacer le champ — afficher la valeur saisie
-    input.value = value;
-    recomputeScores();
-    updateScores();
-    updateLeaderboard();
-    updateDetailTable();
-  }
-
-  // ── Manche suivante ───────────────────────────────────────────────────────
-  function nextRound() {
-    if (gameOver) return;
-    // Valider les champs encore non validés
-    players.forEach((_, i) => {
-      const input = document.getElementById(`round-${i}`);
-      if (!input) return;
-      const raw = parseInt(input.value, 10);
-      if (!Number.isNaN(raw)) {
-        const mancheIdx = round - 1;
-        if (!roundScores[mancheIdx]) roundScores[mancheIdx] = [];
-        if (roundScores[mancheIdx][i] === undefined) {
-          roundScores[mancheIdx][i] = raw;
+          if (input) { input.style.borderColor=''; input.style.boxShadow=''; }
+          players.push({ name: input.value.trim(), score: 0 });
         }
       }
-    });
-    recomputeScores();
-    updateScoresAndLeaderboard();
-    updateDetailTable();
-    if (round >= NB_MANCHES) { endGame(); return; }
-    round++;
-    updateMancheInfo();
-    gameStatus.textContent = `Manche ${round-1} terminée. Manche ${round} en cours.`;
-    renderPlayers();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  // ── Manche précédente ─────────────────────────────────────────────────────
-  function prevRound() {
-    // Si la partie est terminée, on reste sur la manche 11 (pas de retour en arrière depuis l'écran fin)
-    if (gameOver) return;
-    if (round <= 1) return;
-    // Sauvegarder les valeurs en cours de saisie avant de partir
-    players.forEach((_, i) => {
-      const input = document.getElementById(`round-${i}`);
-      if (!input) return;
-      const raw = parseInt(input.value, 10);
-      if (!Number.isNaN(raw)) {
-        const mancheIdx = round - 1;
-        if (!roundScores[mancheIdx]) roundScores[mancheIdx] = [];
-        roundScores[mancheIdx][i] = raw;
-      }
-    });
-    recomputeScores();
-    round--;
-    updateMancheInfo();
-    gameStatus.textContent = `Navigation — Manche ${round} en cours d'édition.`;
-    renderPlayers();
-    updateScoresAndLeaderboard();
-    updateDetailTable();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  // ── Fin de partie ─────────────────────────────────────────────────────────
-  function endGame() {
-    gameOver = true; stopChrono();
-    const now = Date.now();
-    players.forEach(p => {
-      if (!knownPlayers.includes(p.name)) knownPlayers.push(p.name);
-      knownPlayersUsage[p.name] = now;
-    });
-    localStorage.setItem('cinqrois_known_players', JSON.stringify(knownPlayers));
-    localStorage.setItem('cinqrois_known_usage',   JSON.stringify(knownPlayersUsage));
-    const minScore = Math.min(...players.map(p => p.score));
-    const winners  = players.filter(p => p.score === minScore);
-    winnerPanel.classList.remove('hidden');
-    nextRoundBtnBottom.classList.add('hidden');
-    prevRoundBtn.classList.add('hidden');
-    winnerText.textContent = winners.length === 1
-      ? `Partie terminée ! 🏆 Vainqueur : ${winners[0].name} avec ${minScore} points.`
-      : `Partie terminée ! Égalité : ${winners.map(w=>w.name).join(', ')} avec ${minScore} points.`;
-    gameStatus.textContent = 'Les 11 manches sont terminées.';
-    setInputsLocked(true);
-    updateDetailTable();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  // ── Démarrer ──────────────────────────────────────────────────────────────
-  function startFromSetup() {
-    players = [];
-    let hasEmpty = false;
-    for (let i = 0; i < selectedPlayerCount; i++) {
-      const input = document.getElementById(`playerName${i}`);
-      if (!input || !input.value.trim()) {
-        hasEmpty = true;
-        if (input) { input.style.borderColor='#ef4444'; input.style.boxShadow='0 0 0 2px rgba(239,68,68,.3)'; input.placeholder='Nom requis !'; }
-      } else {
-        if (input) { input.style.borderColor=''; input.style.boxShadow=''; }
-        players.push({ name: input.value.trim(), score: 0 });
-      }
+      if (hasEmpty) return;
+      roundPending = []; lastRoundScores = []; gameOver = false; round = 1;
+      setupSection.classList.add('hidden');
+      gameView.classList.remove('hidden');
+      winnerPanel.classList.add('hidden');
+      nextRoundBtnBottom.classList.remove('hidden');
+      gameStatus.textContent = 'La partie est en cours.';
+      updateMancheInfo();
+      startChrono();
+      renderPlayers();
+      updateScoresAndLeaderboard();
     }
-    if (hasEmpty) return;
-    roundScores = Array.from({ length: NB_MANCHES }, () => []);
-    gameOver = false; round = 1;
-    setupSection.classList.add('hidden');
-    gameView.classList.remove('hidden');
-    winnerPanel.classList.add('hidden');
-    nextRoundBtnBottom.classList.remove('hidden');
-    prevRoundBtn.classList.remove('hidden');
-    gameStatus.textContent = 'La partie est en cours.';
-    updateMancheInfo();
-    startChrono();
-    renderPlayers();
-    updateScoresAndLeaderboard();
-    updateDetailTable();
-  }
 
-  function restartSamePlayers() {
-    players = players.map(p => ({ name: p.name, score: 0 }));
-    roundScores = Array.from({ length: NB_MANCHES }, () => []);
-    gameOver = false; round = 1;
-    winnerPanel.classList.add('hidden');
-    nextRoundBtnBottom.classList.remove('hidden');
-    prevRoundBtn.classList.remove('hidden');
-    gameStatus.textContent = 'La partie est relancée avec les mêmes joueurs.';
-    updateMancheInfo(); startChrono(); renderPlayers(); updateScoresAndLeaderboard(); updateDetailTable();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function backHome() {
-    players = []; roundScores = []; gameOver = false; round = 1;
-    winnerPanel.classList.add('hidden');
-    gameView.classList.add('hidden');
-    setupSection.classList.remove('hidden');
-    updateLeaderboard(); renderPlayerInputs();
-    playerNameInputs.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-  // ── Tableau de détail toggle ──────────────────────────────────────────────
-  detailHeader.addEventListener('click', () => {
-    const isOpen = detailBody.classList.toggle('open');
-    detailChevron.classList.toggle('open', isOpen);
-  });
-
-  // ── Joueurs connus ────────────────────────────────────────────────────────
-  function renderPlayerInputs() {
-    const prev = [];
-    for (let i = 0; ; i++) { const el = document.getElementById(`playerName${i}`); if(!el) break; prev.push(el.value); }
-    playerNameInputs.innerHTML = '';
-    for (let i = 0; i < selectedPlayerCount; i++) {
-      const input = document.createElement('input');
-      input.type = 'text'; input.placeholder = `Joueur ${i+1}`;
-      const p = prev[i];
-      input.value = (p !== undefined && !/^Joueur \d+$/.test(p)) ? p : '';
-      input.id = `playerName${i}`;
-      input.addEventListener('focus', () => input.select());
-      input.addEventListener('input', () => { if(input.value.trim()){input.style.borderColor='';input.style.boxShadow='';input.placeholder=`Joueur ${i+1}`;} });
-      playerNameInputs.appendChild(input);
+    function restartSamePlayers() {
+      players = players.map(p => ({ name: p.name, score: 0 }));
+      gameOver = false; round = 1; roundPending = []; lastRoundScores = [];
+      winnerPanel.classList.add('hidden');
+      nextRoundBtnBottom.classList.remove('hidden');
+      gameStatus.textContent = 'La partie est relancée avec les mêmes joueurs.';
+      updateMancheInfo(); startChrono(); renderPlayers(); updateScoresAndLeaderboard();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-    renderKnownPlayers();
-  }
 
-  function getUsedNames() {
-    const used = [];
-    for (let i = 0; i < selectedPlayerCount; i++) { const el = document.getElementById(`playerName${i}`); if(el&&el.value.trim()) used.push(el.value.trim()); }
-    return used;
-  }
+    function backHome() {
+      players = []; gameOver = false; round = 1; roundPending = []; lastRoundScores = [];
+      winnerPanel.classList.add('hidden');
+      gameView.classList.add('hidden');
+      setupSection.classList.remove('hidden');
+      updateLeaderboard(); renderPlayerInputs();
+      playerNameInputs.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 
-  function renderKnownPlayers() {
-    const block    = document.getElementById('knownPlayersBlock');
-    const list     = document.getElementById('knownPlayersList');
-    const trashBtn = document.getElementById('trashModeBtn');
-    const sortBtn  = document.getElementById('sortModeBtn');
-    if (!knownPlayers.length) { block.classList.add('hidden'); trashMode = false; return; }
-    block.classList.remove('hidden');
-    trashBtn && trashBtn.classList.toggle('active', trashMode);
-    if (sortBtn) { sortBtn.classList.toggle('active', sortByRecent); sortBtn.textContent = sortByRecent ? '🕐' : '🔤'; }
-    const sorted = [...knownPlayers].sort((a,b) => sortByRecent ? (knownPlayersUsage[b]||0)-(knownPlayersUsage[a]||0) : a.localeCompare(b,'fr',{sensitivity:'base'}));
-    list.innerHTML = '';
-    const usedNames = getUsedNames();
-    sorted.forEach(name => {
-      const chip = document.createElement('button'); chip.type = 'button';
-      if (trashMode) {
-        chip.className = 'known-chip delete-mode'; chip.textContent = '✕ '+name;
-        chip.addEventListener('click', () => {
-          knownPlayers = knownPlayers.filter(n => n !== name);
-          localStorage.setItem('cinqrois_known_players', JSON.stringify(knownPlayers));
-          for (let i = 0; i < selectedPlayerCount; i++) { const el = document.getElementById(`playerName${i}`); if(el&&el.value===name) el.value=''; }
-          if (!knownPlayers.length) trashMode = false;
-          renderKnownPlayers();
+    // ── Rendu joueurs ─────────────────────────────────────────────────────────
+    function renderPlayers() {
+      playersGrid.innerHTML = '';
+      players.forEach((player, index) => {
+        const color = PLAYER_COLORS[index % PLAYER_COLORS.length];
+        const card = document.createElement('div');
+        card.className = 'player-card';
+        card.innerHTML = `
+          <div class="round-row">
+            <div class="player-name" style="color:${color}" title="${player.name}">${player.name}</div>
+            <input class="round-input" type="number" step="1" id="round-${index}" placeholder="Points">
+            <button class="small-btn small-add" type="button" onclick="addRoundPoints(${index})">+</button>
+            <button class="small-btn small-sub" type="button" onclick="subtractRoundPoints(${index})">−</button>
+            <div class="player-score" id="score-${index}">${player.score}</div>
+          </div>
+        `;
+        playersGrid.appendChild(card);
+        const input = card.querySelector(`#round-${index}`);
+        input.addEventListener('input', () => {
+          const val = parseInt(input.value, 10);
+          const el = document.getElementById(`score-${index}`);
+          if (!el) return;
+          const base = players[index].score - (roundPending[index] ?? 0);
+          el.textContent = Number.isNaN(val) ? players[index].score : base + val;
         });
-      } else {
-        chip.className = 'known-chip'+(usedNames.includes(name) ? ' used' : '');
-        chip.textContent = name;
-        chip.addEventListener('click', () => {
-          const usedNow = getUsedNames();
-          if (usedNow.includes(name)) {
-            for (let i = 0; i < selectedPlayerCount; i++) { const el = document.getElementById(`playerName${i}`); if(el&&el.value===name){el.value='';break;} }
-          } else {
-            for (let i = 0; i < selectedPlayerCount; i++) { const el = document.getElementById(`playerName${i}`); if(el&&el.value.trim()===''){el.value=name;break;} }
-          }
-          renderKnownPlayers();
+        input.addEventListener('keydown', e => {
+          if (e.key !== 'Enter') return;
+          e.preventDefault(); applyRoundPoints(index);
+          const next = document.getElementById(`round-${index + 1}`);
+          if (next) { next.focus(); next.select(); }
         });
+      });
+    }
+
+    // ── Joueurs connus ────────────────────────────────────────────────────────
+    function renderPlayerInputs() {
+      const prev = [];
+      for (let i = 0; ; i++) { const el = document.getElementById(`playerName${i}`); if (!el) break; prev.push(el.value); }
+      playerNameInputs.innerHTML = '';
+      for (let i = 0; i < selectedPlayerCount; i++) {
+        const input = document.createElement('input');
+        input.type = 'text'; input.placeholder = `Joueur ${i + 1}`;
+        const p = prev[i];
+        input.value = (p !== undefined && !/^Joueur \d+$/.test(p)) ? p : '';
+        input.id = `playerName${i}`;
+        input.addEventListener('focus', () => input.select());
+        input.addEventListener('input', () => { if (input.value.trim()) { input.style.borderColor=''; input.style.boxShadow=''; input.placeholder=`Joueur ${i+1}`; } });
+        playerNameInputs.appendChild(input);
       }
-      list.appendChild(chip);
+      renderKnownPlayers();
+    }
+
+    function getUsedNames() {
+      const used = [];
+      for (let i = 0; i < selectedPlayerCount; i++) { const el = document.getElementById(`playerName${i}`); if (el && el.value.trim()) used.push(el.value.trim()); }
+      return used;
+    }
+
+    function renderKnownPlayers() {
+      const block = document.getElementById('knownPlayersBlock');
+      const list  = document.getElementById('knownPlayersList');
+      const trashBtn = document.getElementById('trashModeBtn');
+      const sortBtn  = document.getElementById('sortModeBtn');
+      if (!knownPlayers.length) { block.classList.add('hidden'); trashMode = false; return; }
+      block.classList.remove('hidden');
+      trashBtn && trashBtn.classList.toggle('active', trashMode);
+      if (sortBtn) { sortBtn.classList.toggle('active', sortByRecent); sortBtn.textContent = sortByRecent ? '🕐' : '🔤'; }
+      const sorted = [...knownPlayers].sort((a,b) => sortByRecent ? (knownPlayersUsage[b]||0)-(knownPlayersUsage[a]||0) : a.localeCompare(b,'fr',{sensitivity:'base'}));
+      list.innerHTML = '';
+      const usedNames = getUsedNames();
+      sorted.forEach(name => {
+        const chip = document.createElement('button'); chip.type = 'button';
+        if (trashMode) {
+          chip.className = 'known-chip delete-mode'; chip.textContent = '✕ ' + name;
+          chip.addEventListener('click', () => {
+            knownPlayers = knownPlayers.filter(n => n !== name);
+            localStorage.setItem('cinqrois_known_players', JSON.stringify(knownPlayers));
+            for (let i = 0; i < selectedPlayerCount; i++) { const el = document.getElementById(`playerName${i}`); if (el && el.value === name) el.value = ''; }
+            if (!knownPlayers.length) trashMode = false;
+            renderKnownPlayers();
+          });
+        } else {
+          chip.className = 'known-chip' + (usedNames.includes(name) ? ' used' : '');
+          chip.textContent = name;
+          chip.addEventListener('click', () => {
+            const usedNow = getUsedNames();
+            if (usedNow.includes(name)) {
+              for (let i = 0; i < selectedPlayerCount; i++) { const el = document.getElementById(`playerName${i}`); if (el && el.value === name) { el.value = ''; break; } }
+            } else {
+              for (let i = 0; i < selectedPlayerCount; i++) { const el = document.getElementById(`playerName${i}`); if (el && el.value.trim() === '') { el.value = name; break; } }
+            }
+            renderKnownPlayers();
+          });
+        }
+        list.appendChild(chip);
+      });
+    }
+
+    document.getElementById('trashModeBtn').addEventListener('click', () => { trashMode = !trashMode; renderKnownPlayers(); });
+    document.getElementById('sortModeBtn').addEventListener('click', () => { sortByRecent = !sortByRecent; renderKnownPlayers(); });
+    document.getElementById('leaderboardTitle').addEventListener('click', () => { leaderboardSortAlpha = !leaderboardSortAlpha; updateLeaderboard(); });
+
+    document.querySelectorAll('.player-count-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        selectedPlayerCount = parseInt(btn.dataset.count, 10);
+        document.querySelectorAll('.player-count-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderPlayerInputs();
+      });
     });
-  }
 
-  document.getElementById('trashModeBtn').addEventListener('click', () => { trashMode = !trashMode; renderKnownPlayers(); });
-  document.getElementById('sortModeBtn').addEventListener('click',  () => { sortByRecent = !sortByRecent; renderKnownPlayers(); });
-  document.getElementById('leaderboardTitle').addEventListener('click', () => { leaderboardSortAlpha = !leaderboardSortAlpha; updateLeaderboard(); });
+    startGameBtn.onclick         = startFromSetup;
+    restartSameBtn.onclick       = restartSamePlayers;
+    backHomeBtn.onclick          = backHome;
+    cancelRoundBtn.onclick       = cancelLastRound;
+    cancelRoundBtnBottom.onclick = cancelLastRound;
+    roundPill.onclick            = nextRound;
+    nextRoundBtnBottom.onclick   = nextRound;
 
-  document.querySelectorAll('.player-count-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      selectedPlayerCount = parseInt(btn.dataset.count, 10);
-      document.querySelectorAll('.player-count-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      renderPlayerInputs();
-    });
-  });
-
-  startGameBtn.onclick     = startFromSetup;
-  restartSameBtn.onclick   = restartSamePlayers;
-  backHomeBtn.onclick      = backHome;
-  roundPill.onclick        = nextRound;
-  nextRoundBtnBottom.onclick = nextRound;
-  prevRoundBtn.onclick     = prevRound;
-
-  renderPlayerInputs();
-</script>
+    renderPlayerInputs();
+  </script>
 </body>
 </html>
