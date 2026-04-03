@@ -481,8 +481,7 @@
       html += `<tr${isCurrent ? ' class="current-round"' : ''}>`;
       // Label : "M 1 · 3 " / "M10 · 10" — tout aligné en monospace
       const num   = String(m + 1).padStart(2, '\u2007'); // figure space
-      const atout = MANCHES[m].atout.padEnd(2, '\u2007');
-      html += `<td>M${num}&thinsp;·&thinsp;${atout}</td>`;
+      html += `<td>M${num}&thinsp;·&thinsp;<span style="display:inline-block;width:1.6ch;text-align:right">${MANCHES[m].atout}</span></td>`;
       players.forEach((_, i) => {
         const v   = roundScores[m] ? roundScores[m][i] : undefined;
         const cum = (() => { let t=0; for(let k=0;k<=m;k++){ const s=roundScores[k]?roundScores[k][i]:undefined; if(s!==undefined) t+=s; } return t; })();
