@@ -532,7 +532,16 @@
       const input = card.querySelector(`#round-${index}`);
 
       // Sélectionner tout au focus
-      input.addEventListener('focus', () => input.select());
+      input.addEventListener('focus', () => {
+  input.select();
+  setTimeout(() => {
+    input.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+      inline: 'nearest'
+    });
+  }, 250);
+});
 
       // Aperçu du score en temps réel pendant la saisie
       input.addEventListener('input', () => {
