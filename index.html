@@ -124,8 +124,19 @@
       background:rgba(15,23,42,.8);border:1px solid rgba(34,197,94,.3);
       border-radius:14px;padding:12px;margin-bottom:12px;
     }
-    .leaderboard-title{font-size:.95rem;font-weight:900;color:var(--accent);margin-bottom:6px;text-align:center}
-    .leaderboard-grid{display:grid;gap:3px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+    .leaderboard-topbar{
+      display:flex;align-items:center;justify-content:space-between;gap:8px;
+      margin-bottom:6px;
+    }
+    .leaderboard-topbar .pill{
+      font-size:.88rem;font-weight:900;padding:5px 10px;
+      border-radius:999px;background:rgba(2,6,23,.35);border:1px solid rgba(51,65,85,.95);
+      white-space:nowrap;cursor:pointer;
+    }
+    .leaderboard-topbar .leaderboard-title{margin-bottom:0;flex:1;text-align:center}
+    .leaderboard-topbar .chrono-btn{font-size:.88rem;font-weight:900;min-width:auto;padding:5px 10px;border-radius:999px;white-space:nowrap}
+    .leaderboard-title{font-size:.95rem;font-weight:900;color:var(--accent);margin-bottom:0;text-align:center}
+    .leaderboard-grid{display:grid;gap:4px;grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
     .leaderboard-item{
       position:relative;display:flex;justify-content:space-between;align-items:center;
       padding:5px 8px;background:rgba(15,23,42,.6);border:1px solid rgba(51,65,85,.5);
@@ -158,8 +169,7 @@
     }
     .detail-header:hover{background:rgba(51,65,85,.2)}
     .detail-header-title{font-size:.95rem;font-weight:900;color:var(--muted)}
-    .detail-chevron{color:var(--muted);transition:transform .25s;font-size:1rem}
-    .detail-chevron.open{transform:rotate(180deg)}
+    .detail-chevron{color:var(--muted);font-size:1rem}
     .detail-body{display:none;padding:0 12px 12px}
     .detail-body.open{display:block}
     .detail-table{width:100%;border-collapse:collapse;font-size:.82rem}
@@ -241,10 +251,6 @@
 
       <!-- Infos manche -->
       <div class="info-panel">
-        <div class="topbar">
-          <div class="pill" id="roundPill">Manche <span id="roundNumber">1</span> / 11</div>
-          <button class="chrono-btn" id="chronoBtn" type="button">0 min</button>
-        </div>
         <div class="manche-info">
           <div class="info-box">
             <div class="info-box-label">🃏 Cartes en main</div>
@@ -272,12 +278,16 @@
 
     <!-- Scores -->
     <div class="scores-panel">
-      <div style="display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap;margin-bottom:12px;">
+      <div style="display:none;">
         <h2 style="margin:0;align-self:center;">Scores des joueurs</h2>
         <div class="game-status" id="gameStatus">La partie est en cours.</div>
       </div>
-      <div id="leaderboardSection" class="leaderboard-section">
+      <div class="leaderboard-topbar">
+        <div class="pill" id="roundPill">Manche <span id="roundNumber">1</span> / 11</div>
         <div class="leaderboard-title" id="leaderboardTitle" style="cursor:pointer;">🏆 Classement actuel</div>
+        <button class="chrono-btn" id="chronoBtn" type="button">0 min</button>
+      </div>
+      <div id="leaderboardSection" class="leaderboard-section">
         <div class="leaderboard-grid" id="leaderboardList"></div>
       </div>
       <div class="players-grid" id="playersGrid"></div>
@@ -291,7 +301,7 @@
     <div class="detail-section" id="detailSection">
       <div class="detail-header" id="detailHeader">
         <span class="detail-header-title">📋 Détail des manches</span>
-        <span class="detail-chevron" id="detailChevron">▼</span>
+        <span class="detail-chevron" id="detailChevron">▶</span>
       </div>
       <div class="detail-body" id="detailBody">
         <div style="overflow-x:auto;">
@@ -735,7 +745,7 @@
   // ── Tableau de détail toggle ──────────────────────────────────────────────
   detailHeader.addEventListener('click', () => {
     const isOpen = detailBody.classList.toggle('open');
-    detailChevron.classList.toggle('open', isOpen);
+    detailChevron.textContent = isOpen ? '▼' : '▶';
   });
 
   // ── Joueurs connus ────────────────────────────────────────────────────────
