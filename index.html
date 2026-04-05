@@ -70,10 +70,11 @@
       display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);
       gap:12px;align-items:start;
     }
-    .info-panel,.scores-panel{
+    .info-panel{
       background:rgba(15,23,42,.72);border:1px solid rgba(51,65,85,.95);
       border-radius:var(--radius);padding:12px;
     }
+    .scores-panel{padding:0;}
     .topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
     .pill{
       display:inline-flex;align-items:center;gap:6px;padding:8px 12px;
@@ -121,8 +122,7 @@
     .small-add{background:var(--accent);color:#000}
     .small-sub{background:var(--danger)}
     .leaderboard-section{
-      background:rgba(15,23,42,.8);border:1px solid rgba(34,197,94,.3);
-      border-radius:14px;padding:12px;margin-bottom:12px;
+      background:transparent;border:none;padding:0;margin-bottom:10px;
     }
     .leaderboard-topbar{
       display:flex;align-items:center;justify-content:space-between;gap:8px;
@@ -136,21 +136,21 @@
     .leaderboard-topbar .leaderboard-title{margin-bottom:0;flex:1;text-align:center}
     .leaderboard-topbar .chrono-btn{font-size:.88rem;font-weight:900;min-width:auto;padding:5px 10px;border-radius:999px;white-space:nowrap}
     .leaderboard-title{font-size:.95rem;font-weight:900;color:var(--accent);margin-bottom:0;text-align:center}
-    .leaderboard-grid{display:grid;gap:4px;grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
+    .leaderboard-grid{display:grid;gap:5px;grid-template-columns:repeat(auto-fill,minmax(min(100%,165px),1fr))}
     .leaderboard-item{
       position:relative;display:flex;justify-content:space-between;align-items:center;
-      padding:5px 8px;background:rgba(15,23,42,.6);border:1px solid rgba(51,65,85,.5);
-      border-radius:8px;font-size:.88rem;font-weight:700;overflow:hidden;
+      padding:8px 10px;background:rgba(15,23,42,.6);border:1px solid rgba(51,65,85,.5);
+      border-radius:10px;font-size:1rem;font-weight:700;overflow:hidden;
     }
     .leaderboard-item.leader{border-color:rgba(34,197,94,.55)}
     .leaderboard-progress{
       position:absolute;left:0;top:0;bottom:0;background:rgba(34,197,94,.15);
-      border-radius:8px;transition:width .4s ease;pointer-events:none;
+      border-radius:10px;transition:width .4s ease;pointer-events:none;
     }
     .leaderboard-rank,.leaderboard-name,.leaderboard-score{position:relative;z-index:1}
-    .leaderboard-rank{color:var(--accent);width:20px;text-align:center;font-weight:900;font-size:.9rem}
-    .leaderboard-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding-left:4px}
-    .leaderboard-score{color:#fff;font-weight:900;min-width:42px;text-align:right;font-size:.9rem}
+    .leaderboard-rank{color:var(--accent);width:1.6rem;flex-shrink:0;text-align:center;font-weight:900;font-size:1rem}
+    .leaderboard-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 5px;min-width:0}
+    .leaderboard-score{color:#fff;font-weight:900;width:3ch;flex-shrink:0;text-align:right;font-size:1rem}
     .winner-panel{
       background:rgba(15,23,42,.72);border:1px solid rgba(34,197,94,.6);
       border-radius:var(--radius);padding:12px;box-shadow:0 0 24px rgba(34,197,94,.12);
@@ -520,8 +520,8 @@
       card.innerHTML = `
         <div class="round-row">
           <div class="player-name" style="color:${color}" title="${player.name}">${player.name}</div>
-          <input class="round-input" type="number" step="1" id="round-${index}"
-            placeholder="Points" value="${savedVal !== undefined ? savedVal : ''}">
+          <input class="round-input" type="number" inputmode="decimal" step="1" id="round-${index}"
+            placeholder="Pts" value="${savedVal !== undefined ? savedVal : ''}">
           <button class="small-btn small-add" id="btn-add-${index}" type="button">+</button>
           <button class="small-btn small-sub" id="btn-sub-${index}" type="button">−</button>
           <div class="player-score" id="score-${index}">${player.score}</div>
@@ -531,17 +531,11 @@
 
       const input = card.querySelector(`#round-${index}`);
 
-      // Sélectionner tout au focus
+      // Sélectionner tout au focus + scroll dans la vue (iOS)
       input.addEventListener('focus', () => {
-  input.select();
-  setTimeout(() => {
-    input.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center',
-      inline: 'nearest'
-    });
-  }, 250);
-});
+        input.select();
+        setTimeout(() => input.scrollIntoView({ behavior: 'smooth', block: 'center' }), 120);
+      });
 
       // Aperçu du score en temps réel pendant la saisie
       input.addEventListener('input', () => {
