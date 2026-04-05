@@ -112,7 +112,7 @@
     .player-name{font-size:.95rem;font-weight:900;flex:1;min-width:0;word-break:break-word}
     .player-score{font-size:1.1rem;font-weight:900;color:#fff;white-space:nowrap;min-width:3ch;text-align:right}
     .round-row{display:flex;align-items:center;gap:6px;width:100%}
-    .round-input{width:82px;min-width:0;text-align:center;font-weight:700;flex-shrink:0}
+    .round-input{width:100px;min-width:80px;flex-shrink:0;text-align:center;font-weight:700}
     .round-input:disabled{opacity:.35;cursor:not-allowed}
     .small-btn{
       min-height:36px;min-width:36px;padding:0 10px;border-radius:10px;
@@ -237,7 +237,7 @@
         <div style="display:flex;align-items:center;gap:10px;">
           <label>Joueurs connus :</label>
           <button class="btn known-trash-btn" id="trashModeBtn" type="button">🗑️</button>
-          <button class="btn known-trash-btn" id="sortModeBtn" type="button">🔤</button>
+          <button class="btn known-trash-btn" id="sortModeBtn" type="button">🕐</button>
         </div>
         <div id="knownPlayersList" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;"></div>
       </div>
@@ -364,7 +364,7 @@
   let roundScores = [];  // roundScores[mancheIndex][joueurIndex] = points (ou undefined)
   let leaderboardSortAlpha = false;
   let trashMode = false;
-  let sortByRecent = false;
+  let sortByRecent = true;
   let knownPlayers      = JSON.parse(localStorage.getItem('cinqrois_known_players') || '[]');
   let knownPlayersUsage = JSON.parse(localStorage.getItem('cinqrois_known_usage')   || '{}');
 
